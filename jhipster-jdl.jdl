@@ -1,0 +1,85 @@
+entity Fournisseur {
+    raisonSociale String required 	  
+    matriculeFiscale String required 
+    adresse String required 
+    email String required 
+    telephone Integer required 
+}
+
+entity Offre {  
+    uniteMesure String required 
+    marque String required 
+    prixUnitaire Double required 
+    origine String required 
+    delaiLivraison Integer required 
+    observation String  
+    amc Boolean
+    echantillon Boolean
+    fodec Boolean
+    avecCodeBarre Boolean
+    conditionnement String
+    prixConditionnement Double
+}
+
+entity Tva {
+    tauxTva Double required 
+}
+
+entity DemandeOffre {
+    description String required 
+    quantite Integer required 
+}
+
+entity AppelOffre {
+    numero String required 
+    dateDebut Instant required 
+    dateFin Instant required 
+    exercice String required 
+    designation String required  
+}
+
+entity Article {
+    designation String required 
+    actif Boolean 
+    codeSaisi String required 
+}
+
+entity Categorie {
+    designation String required minlength(2)
+    actif Boolean 
+}
+
+relationship ManyToOne {
+    Fournisseur { user(login) } to User
+   
+}
+
+relationship OneToMany {
+    Fournisseur { offre } to Offre
+    DemandeOffre { offre } to Offre 
+    DemandeOffre { article } to Article 
+}
+
+relationship OneToOne {
+    Offre { tva } to Tva 
+}
+
+relationship ManyToOne {
+    DemandeOffre { appelOffre } to AppelOffre 
+}
+
+relationship OneToMany {
+    Categorie { article } to Article 
+}
+
+// Set pagination options
+paginate Fournisseur, Offre, DemandeOffre, AppelOffre, Article, Categorie with infinite-scroll
+
+// Set filter options
+
+
+// Use Data Transfer Objects (DTO)
+dto all with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
