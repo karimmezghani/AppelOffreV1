@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="OffreHeading">
+    <span jhiTranslate="appelOffreApp.offre.home.title">Offres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="appelOffreApp.offre.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-offre"
+        [routerLink]="['/offre/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="appelOffreApp.offre.home.createLabel"> Create a new Offre </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="offres?.length === 0">
+    <span jhiTranslate="appelOffreApp.offre.home.notFound">No offres found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="offres && offres.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="uniteMesure">
+            <span jhiTranslate="appelOffreApp.offre.uniteMesure">Unite Mesure</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="marque">
+            <span jhiTranslate="appelOffreApp.offre.marque">Marque</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="prixUnitaire">
+            <span jhiTranslate="appelOffreApp.offre.prixUnitaire">Prix Unitaire</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="origine">
+            <span jhiTranslate="appelOffreApp.offre.origine">Origine</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="delaiLivraison">
+            <span jhiTranslate="appelOffreApp.offre.delaiLivraison">Delai Livraison</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="observation">
+            <span jhiTranslate="appelOffreApp.offre.observation">Observation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="amc"><span jhiTranslate="appelOffreApp.offre.amc">Amc</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="echantillon">
+            <span jhiTranslate="appelOffreApp.offre.echantillon">Echantillon</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fodec"><span jhiTranslate="appelOffreApp.offre.fodec">Fodec</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="avecCodeBarre">
+            <span jhiTranslate="appelOffreApp.offre.avecCodeBarre">Avec Code Barre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="conditionnement">
+            <span jhiTranslate="appelOffreApp.offre.conditionnement">Conditionnement</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="prixConditionnement">
+            <span jhiTranslate="appelOffreApp.offre.prixConditionnement">Prix Conditionnement</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tva.id"><span jhiTranslate="appelOffreApp.offre.tva">Tva</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fournisseur.id">
+            <span jhiTranslate="appelOffreApp.offre.fournisseur">Fournisseur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="demandeOffre.id">
+            <span jhiTranslate="appelOffreApp.offre.demandeOffre">Demande Offre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let offre of offres; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/offre', offre.id, 'view']">{{ offre.id }}</a>
+          </td>
+          <td>{{ offre.uniteMesure }}</td>
+          <td>{{ offre.marque }}</td>
+          <td>{{ offre.prixUnitaire }}</td>
+          <td>{{ offre.origine }}</td>
+          <td>{{ offre.delaiLivraison }}</td>
+          <td>{{ offre.observation }}</td>
+          <td>{{ offre.amc }}</td>
+          <td>{{ offre.echantillon }}</td>
+          <td>{{ offre.fodec }}</td>
+          <td>{{ offre.avecCodeBarre }}</td>
+          <td>{{ offre.conditionnement }}</td>
+          <td>{{ offre.prixConditionnement }}</td>
+          <td>
+            <div *ngIf="offre.tva">
+              <a [routerLink]="['/tva', offre.tva?.id, 'view']">{{ offre.tva?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offre.fournisseur">
+              <a [routerLink]="['/fournisseur', offre.fournisseur?.id, 'view']">{{ offre.fournisseur?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offre.demandeOffre">
+              <a [routerLink]="['/demande-offre', offre.demandeOffre?.id, 'view']">{{ offre.demandeOffre?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/offre', offre.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/offre', offre.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(offre)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

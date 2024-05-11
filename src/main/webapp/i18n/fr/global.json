@@ -7,6 +7,13 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entités",
+        "fournisseur": "Fournisseur",
+        "offre": "Offre",
+        "tva": "Tva",
+        "demandeOffre": "Demande Offre",
+        "appelOffre": "Appel Offre",
+        "article": "Article",
+        "categorie": "Categorie",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeOffre">
+      <h2 data-cy="demandeOffreDetailsHeading"><span jhiTranslate="appelOffreApp.demandeOffre.detail.title">Demande Offre</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ demandeOffre.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.demandeOffre.description">Description</span></dt>
+        <dd>
+          <span>{{ demandeOffre.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.demandeOffre.quantite">Quantite</span></dt>
+        <dd>
+          <span>{{ demandeOffre.quantite }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.demandeOffre.appelOffre">Appel Offre</span></dt>
+        <dd>
+          <div *ngIf="demandeOffre.appelOffre">
+            <a [routerLink]="['/appel-offre', demandeOffre.appelOffre?.id, 'view']">{{ demandeOffre.appelOffre?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-offre', demandeOffre.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

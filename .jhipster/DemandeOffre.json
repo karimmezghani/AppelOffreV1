@@ -1,0 +1,45 @@
+{
+  "name": "DemandeOffre",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "quantite",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "offre",
+      "otherEntityRelationshipName": "demandeOffre",
+      "relationshipName": "offre"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "demandeOffre",
+      "relationshipName": "article"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "appelOffre",
+      "otherEntityRelationshipName": "demandeOffre",
+      "relationshipName": "appelOffre"
+    }
+  ],
+  "entityTableName": "demande_offre",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20240416142709"
+}

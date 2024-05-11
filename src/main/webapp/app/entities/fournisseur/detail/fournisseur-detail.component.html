@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fournisseur">
+      <h2 data-cy="fournisseurDetailsHeading"><span jhiTranslate="appelOffreApp.fournisseur.detail.title">Fournisseur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fournisseur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.fournisseur.raisonSociale">Raison Sociale</span></dt>
+        <dd>
+          <span>{{ fournisseur.raisonSociale }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.fournisseur.matriculeFiscale">Matricule Fiscale</span></dt>
+        <dd>
+          <span>{{ fournisseur.matriculeFiscale }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.fournisseur.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ fournisseur.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.fournisseur.email">Email</span></dt>
+        <dd>
+          <span>{{ fournisseur.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.fournisseur.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ fournisseur.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.fournisseur.user">User</span></dt>
+        <dd>
+          <span>{{ fournisseur.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fournisseur', fournisseur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

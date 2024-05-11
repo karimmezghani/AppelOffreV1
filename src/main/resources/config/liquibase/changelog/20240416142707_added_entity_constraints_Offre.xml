@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Offre.
+    -->
+    <changeSet id="20240416142707-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="tva_id"
+                                 baseTableName="offre"
+                                 constraintName="fk_offre__tva_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tva"/>
+
+        <addForeignKeyConstraint baseColumnNames="fournisseur_id"
+                                 baseTableName="offre"
+                                 constraintName="fk_offre__fournisseur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fournisseur"/>
+
+        <addForeignKeyConstraint baseColumnNames="demande_offre_id"
+                                 baseTableName="offre"
+                                 constraintName="fk_offre__demande_offre_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="demande_offre"/>
+    </changeSet>
+</databaseChangeLog>

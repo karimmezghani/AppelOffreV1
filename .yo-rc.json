@@ -41,6 +41,8 @@
     "packageFolder": "com/csys/appel",
     "jwtSecretKey": "OThlMmRmMmJmZTkzMTYxYzMyYmNkZmU0YWRhMjU4YTYyNTQyNDNkOGY0ODU0M2I2ZjY3ZTgxZjg3NTEwNjVmYjFkY2Q1ZGIzYjQxZDI0ZmViNjU1NjM5NTA3ZDdmMWVkMmQ5YzMzYmUwOGJkOTgxODM1ZjM5ZWQxYjllZGEzNWE=",
     "clientPackageManager": "npm",
-    "languages": ["fr"]
+    "languages": ["fr"],
+    "entities": ["Fournisseur", "Offre", "Tva", "DemandeOffre", "AppelOffre", "Article", "Categorie"],
+    "lastLiquibaseTimestamp": 1713277632000
   }
 }

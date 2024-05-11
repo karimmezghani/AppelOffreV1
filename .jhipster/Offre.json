@@ -1,0 +1,89 @@
+{
+  "name": "Offre",
+  "fields": [
+    {
+      "fieldName": "uniteMesure",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "marque",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prixUnitaire",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "origine",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "delaiLivraison",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "observation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "amc",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "echantillon",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fodec",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "avecCodeBarre",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "conditionnement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prixConditionnement",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "tva",
+      "otherEntityRelationshipName": "offre",
+      "relationshipName": "tva",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "fournisseur",
+      "otherEntityRelationshipName": "offre",
+      "relationshipName": "fournisseur"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "demandeOffre",
+      "otherEntityRelationshipName": "offre",
+      "relationshipName": "demandeOffre"
+    }
+  ],
+  "entityTableName": "offre",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20240416142707"
+}

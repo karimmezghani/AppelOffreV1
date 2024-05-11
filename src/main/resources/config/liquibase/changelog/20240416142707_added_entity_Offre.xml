@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Offre.
+    -->
+    <changeSet id="20240416142707-1" author="jhipster">
+        <createTable tableName="offre">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unite_mesure" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="marque" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="prix_unitaire" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="origine" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="delai_livraison" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="observation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="amc" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="echantillon" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="fodec" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="avec_code_barre" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="conditionnement" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="prix_conditionnement" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="tva_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_offre__tva_id" />
+            </column>
+            <column name="fournisseur_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="demande_offre_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20240416142707-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/offre.csv"
+                  separator=";"
+                  tableName="offre">
+            <column name="id" type="numeric"/>
+            <column name="unite_mesure" type="string"/>
+            <column name="marque" type="string"/>
+            <column name="prix_unitaire" type="numeric"/>
+            <column name="origine" type="string"/>
+            <column name="delai_livraison" type="numeric"/>
+            <column name="observation" type="string"/>
+            <column name="amc" type="boolean"/>
+            <column name="echantillon" type="boolean"/>
+            <column name="fodec" type="boolean"/>
+            <column name="avec_code_barre" type="boolean"/>
+            <column name="conditionnement" type="string"/>
+            <column name="prix_conditionnement" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

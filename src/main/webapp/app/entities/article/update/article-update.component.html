@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-article-heading" data-cy="ArticleCreateUpdateHeading" jhiTranslate="appelOffreApp.article.home.createOrEditLabel">
+        Create or edit a Article
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.article.designation" for="field_designation">Designation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="designation"
+            id="field_designation"
+            data-cy="designation"
+            formControlName="designation"
+          />
+          <div *ngIf="editForm.get('designation')!.invalid && (editForm.get('designation')!.dirty || editForm.get('designation')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('designation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.article.actif" for="field_actif">Actif</label>
+          <input type="checkbox" class="form-check" name="actif" id="field_actif" data-cy="actif" formControlName="actif" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.article.codeSaisi" for="field_codeSaisi">Code Saisi</label>
+          <input type="text" class="form-control" name="codeSaisi" id="field_codeSaisi" data-cy="codeSaisi" formControlName="codeSaisi" />
+          <div *ngIf="editForm.get('codeSaisi')!.invalid && (editForm.get('codeSaisi')!.dirty || editForm.get('codeSaisi')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeSaisi')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.article.demandeOffre" for="field_demandeOffre">Demande Offre</label>
+          <select class="form-control" id="field_demandeOffre" data-cy="demandeOffre" name="demandeOffre" formControlName="demandeOffre">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                demandeOffreOption.id === editForm.get('demandeOffre')!.value?.id ? editForm.get('demandeOffre')!.value : demandeOffreOption
+              "
+              *ngFor="let demandeOffreOption of demandeOffresSharedCollection; trackBy: trackDemandeOffreById"
+            >
+              {{ demandeOffreOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.article.categorie" for="field_categorie">Categorie</label>
+          <select class="form-control" id="field_categorie" data-cy="categorie" name="categorie" formControlName="categorie">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="categorieOption.id === editForm.get('categorie')!.value?.id ? editForm.get('categorie')!.value : categorieOption"
+              *ngFor="let categorieOption of categoriesSharedCollection; trackBy: trackCategorieById"
+            >
+              {{ categorieOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

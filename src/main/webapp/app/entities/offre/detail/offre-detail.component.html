@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="offre">
+      <h2 data-cy="offreDetailsHeading"><span jhiTranslate="appelOffreApp.offre.detail.title">Offre</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ offre.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.uniteMesure">Unite Mesure</span></dt>
+        <dd>
+          <span>{{ offre.uniteMesure }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.marque">Marque</span></dt>
+        <dd>
+          <span>{{ offre.marque }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.prixUnitaire">Prix Unitaire</span></dt>
+        <dd>
+          <span>{{ offre.prixUnitaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.origine">Origine</span></dt>
+        <dd>
+          <span>{{ offre.origine }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.delaiLivraison">Delai Livraison</span></dt>
+        <dd>
+          <span>{{ offre.delaiLivraison }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.observation">Observation</span></dt>
+        <dd>
+          <span>{{ offre.observation }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.amc">Amc</span></dt>
+        <dd>
+          <span>{{ offre.amc }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.echantillon">Echantillon</span></dt>
+        <dd>
+          <span>{{ offre.echantillon }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.fodec">Fodec</span></dt>
+        <dd>
+          <span>{{ offre.fodec }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.avecCodeBarre">Avec Code Barre</span></dt>
+        <dd>
+          <span>{{ offre.avecCodeBarre }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.conditionnement">Conditionnement</span></dt>
+        <dd>
+          <span>{{ offre.conditionnement }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.prixConditionnement">Prix Conditionnement</span></dt>
+        <dd>
+          <span>{{ offre.prixConditionnement }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.tva">Tva</span></dt>
+        <dd>
+          <div *ngIf="offre.tva">
+            <a [routerLink]="['/tva', offre.tva?.id, 'view']">{{ offre.tva?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.fournisseur">Fournisseur</span></dt>
+        <dd>
+          <div *ngIf="offre.fournisseur">
+            <a [routerLink]="['/fournisseur', offre.fournisseur?.id, 'view']">{{ offre.fournisseur?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.offre.demandeOffre">Demande Offre</span></dt>
+        <dd>
+          <div *ngIf="offre.demandeOffre">
+            <a [routerLink]="['/demande-offre', offre.demandeOffre?.id, 'view']">{{ offre.demandeOffre?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/offre', offre.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

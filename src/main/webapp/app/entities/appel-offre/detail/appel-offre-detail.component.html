@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="appelOffre">
+      <h2 data-cy="appelOffreDetailsHeading"><span jhiTranslate="appelOffreApp.appelOffre.detail.title">Appel Offre</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ appelOffre.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.appelOffre.numero">Numero</span></dt>
+        <dd>
+          <span>{{ appelOffre.numero }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.appelOffre.dateDebut">Date Debut</span></dt>
+        <dd>
+          <span>{{ appelOffre.dateDebut | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.appelOffre.dateFin">Date Fin</span></dt>
+        <dd>
+          <span>{{ appelOffre.dateFin | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.appelOffre.exercice">Exercice</span></dt>
+        <dd>
+          <span>{{ appelOffre.exercice }}</span>
+        </dd>
+        <dt><span jhiTranslate="appelOffreApp.appelOffre.designation">Designation</span></dt>
+        <dd>
+          <span>{{ appelOffre.designation }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/appel-offre', appelOffre.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

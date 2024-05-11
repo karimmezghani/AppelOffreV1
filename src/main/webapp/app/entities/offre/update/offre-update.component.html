@@ -1,0 +1,262 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-offre-heading" data-cy="OffreCreateUpdateHeading" jhiTranslate="appelOffreApp.offre.home.createOrEditLabel">
+        Create or edit a Offre
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.uniteMesure" for="field_uniteMesure">Unite Mesure</label>
+          <input
+            type="text"
+            class="form-control"
+            name="uniteMesure"
+            id="field_uniteMesure"
+            data-cy="uniteMesure"
+            formControlName="uniteMesure"
+          />
+          <div *ngIf="editForm.get('uniteMesure')!.invalid && (editForm.get('uniteMesure')!.dirty || editForm.get('uniteMesure')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('uniteMesure')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.marque" for="field_marque">Marque</label>
+          <input type="text" class="form-control" name="marque" id="field_marque" data-cy="marque" formControlName="marque" />
+          <div *ngIf="editForm.get('marque')!.invalid && (editForm.get('marque')!.dirty || editForm.get('marque')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('marque')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.prixUnitaire" for="field_prixUnitaire">Prix Unitaire</label>
+          <input
+            type="number"
+            class="form-control"
+            name="prixUnitaire"
+            id="field_prixUnitaire"
+            data-cy="prixUnitaire"
+            formControlName="prixUnitaire"
+          />
+          <div
+            *ngIf="editForm.get('prixUnitaire')!.invalid && (editForm.get('prixUnitaire')!.dirty || editForm.get('prixUnitaire')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prixUnitaire')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('prixUnitaire')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.origine" for="field_origine">Origine</label>
+          <input type="text" class="form-control" name="origine" id="field_origine" data-cy="origine" formControlName="origine" />
+          <div *ngIf="editForm.get('origine')!.invalid && (editForm.get('origine')!.dirty || editForm.get('origine')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('origine')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.delaiLivraison" for="field_delaiLivraison"
+            >Delai Livraison</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="delaiLivraison"
+            id="field_delaiLivraison"
+            data-cy="delaiLivraison"
+            formControlName="delaiLivraison"
+          />
+          <div
+            *ngIf="
+              editForm.get('delaiLivraison')!.invalid && (editForm.get('delaiLivraison')!.dirty || editForm.get('delaiLivraison')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('delaiLivraison')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('delaiLivraison')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.observation" for="field_observation">Observation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observation"
+            id="field_observation"
+            data-cy="observation"
+            formControlName="observation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.amc" for="field_amc">Amc</label>
+          <input type="checkbox" class="form-check" name="amc" id="field_amc" data-cy="amc" formControlName="amc" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.echantillon" for="field_echantillon">Echantillon</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="echantillon"
+            id="field_echantillon"
+            data-cy="echantillon"
+            formControlName="echantillon"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.fodec" for="field_fodec">Fodec</label>
+          <input type="checkbox" class="form-check" name="fodec" id="field_fodec" data-cy="fodec" formControlName="fodec" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.avecCodeBarre" for="field_avecCodeBarre"
+            >Avec Code Barre</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="avecCodeBarre"
+            id="field_avecCodeBarre"
+            data-cy="avecCodeBarre"
+            formControlName="avecCodeBarre"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.conditionnement" for="field_conditionnement"
+            >Conditionnement</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="conditionnement"
+            id="field_conditionnement"
+            data-cy="conditionnement"
+            formControlName="conditionnement"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.prixConditionnement" for="field_prixConditionnement"
+            >Prix Conditionnement</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="prixConditionnement"
+            id="field_prixConditionnement"
+            data-cy="prixConditionnement"
+            formControlName="prixConditionnement"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.tva" for="field_tva">Tva</label>
+          <select class="form-control" id="field_tva" data-cy="tva" name="tva" formControlName="tva">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="tvaOption.id === editForm.get('tva')!.value?.id ? editForm.get('tva')!.value : tvaOption"
+              *ngFor="let tvaOption of tvasCollection; trackBy: trackTvaById"
+            >
+              {{ tvaOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.fournisseur" for="field_fournisseur">Fournisseur</label>
+          <select class="form-control" id="field_fournisseur" data-cy="fournisseur" name="fournisseur" formControlName="fournisseur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                fournisseurOption.id === editForm.get('fournisseur')!.value?.id ? editForm.get('fournisseur')!.value : fournisseurOption
+              "
+              *ngFor="let fournisseurOption of fournisseursSharedCollection; trackBy: trackFournisseurById"
+            >
+              {{ fournisseurOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appelOffreApp.offre.demandeOffre" for="field_demandeOffre">Demande Offre</label>
+          <select class="form-control" id="field_demandeOffre" data-cy="demandeOffre" name="demandeOffre" formControlName="demandeOffre">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                demandeOffreOption.id === editForm.get('demandeOffre')!.value?.id ? editForm.get('demandeOffre')!.value : demandeOffreOption
+              "
+              *ngFor="let demandeOffreOption of demandeOffresSharedCollection; trackBy: trackDemandeOffreById"
+            >
+              {{ demandeOffreOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

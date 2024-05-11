@@ -1,0 +1,24 @@
+{
+  "appelOffreApp": {
+    "tva": {
+      "home": {
+        "title": "Tvas",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Tva",
+        "createOrEditLabel": "Créer ou éditer un Tva",
+        "notFound": "Aucun Tva trouvé"
+      },
+      "created": "Un nouveau Tva a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tva avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tva avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Tva {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tva"
+      },
+      "id": "ID",
+      "tauxTva": "Taux Tva"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<div>
+  <h2 id="page-heading" data-cy="TvaHeading">
+    <span jhiTranslate="appelOffreApp.tva.home.title">Tvas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="appelOffreApp.tva.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tva"
+        [routerLink]="['/tva/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="appelOffreApp.tva.home.createLabel"> Create a new Tva </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tvas?.length === 0">
+    <span jhiTranslate="appelOffreApp.tva.home.notFound">No tvas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="tvas && tvas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="appelOffreApp.tva.tauxTva">Taux Tva</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tva of tvas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/tva', tva.id, 'view']">{{ tva.id }}</a>
+          </td>
+          <td>{{ tva.tauxTva }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/tva', tva.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/tva', tva.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(tva)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
